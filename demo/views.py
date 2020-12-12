@@ -6,4 +6,6 @@ from .models import Book
 
 
 def fun(request):
-    return render(request, "first_temp.html")
+    books=Book.objects.all()
+    context={'book':books}
+    return render(request, "first_temp.html", context)

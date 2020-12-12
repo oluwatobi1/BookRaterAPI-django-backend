@@ -7,6 +7,10 @@
 </head>
 <body>
     <h1>Here is a template to be displayed</h1>
-    <h3>This is the page</h3>
+    {%for each in book%}
+    {%if not each.is_publised%}
+    <h2>{{each.title}}</h2>
+    {%endif%}
+    {%endfor%}
 </body>
 </html>
