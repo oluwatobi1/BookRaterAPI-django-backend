@@ -9,5 +9,6 @@ router.register('book', BookViewSet)
 
 urlpatterns = [
     path('', views.fun),
+    path('b', views.BookViewSet.as_view({'get': 'list'})),
     path('s', include(router.urls))
 ]
