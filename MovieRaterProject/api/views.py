@@ -21,7 +21,7 @@ class MovieViewSet(viewsets.ModelViewSet):
                 rating = Rating.objects.get(user=user.id, movie=movie.id)
                 rating.stars = stars
                 rating.save()
-                serializer= RatingSerializer(rating, many=False)
+                serializer = RatingSerializer(rating, many=False)
                 response = {"message": "Rating Updated",
                             "result": serializer.data}
                 return Response(response, status=status.HTTP_200_OK)
