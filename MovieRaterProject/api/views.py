@@ -8,13 +8,11 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.contrib.auth.models import User
 
 
-
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = (AllowAny, )
-
 
 
 class MovieViewSet(viewsets.ModelViewSet):
@@ -38,15 +36,12 @@ class MovieViewSet(viewsets.ModelViewSet):
                 response = {"message": "Update successful",
                             "result": serializers.data}
                 return Response(response, status=status.HTTP_200_OK)
-
             except:
                 rating = Rating.objects.create(movie=movie, user=user, stars=stars)
                 serializers = RatingSerializer(rating, many=False)
                 response = {"message": "Created successful",
                             "result": serializers.data}
                 return Response(response, status=status.HTTP_200_OK)
-
-
         else:
             response = {"message": "You need to input stars field"}
             return Response(response, status=status.HTTP_200_OK)
@@ -57,7 +52,6 @@ class RatingViewSet(viewsets.ModelViewSet):
     serializer_class = RatingSerializer
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticated,)
-
 
     def create(self, request, *args, **kwargs):
         response = {"message": "You can't Create rating like that"}
