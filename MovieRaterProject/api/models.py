@@ -17,7 +17,9 @@ class Rating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # Meaning if you'd delete a movie the user goes???
-    stars = models.IntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
+    stars = models.IntegerField(
+                          validators=[MinValueValidator(0),
+                                      MaxValueValidator(5)])
 
     class Meta:
         unique_together = (('user', 'movie'))
